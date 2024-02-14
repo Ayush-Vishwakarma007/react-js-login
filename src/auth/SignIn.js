@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import BASE_URL from "../configuration";
 
 function SignInForm() {
   const [state, setState] = React.useState({
     email: "",
     password: ""
   });
+
+  const navigate = useNavigate(); 
 
   const handleChange = evt => {
     const value = evt.target.value;
@@ -17,16 +23,15 @@ function SignInForm() {
   };
 
   const handleOnSubmit = async evt => {
-    evt.preventDefault();
-
+    evt.preventDefault();    
     const { email, password } = state;
     const data = {
       email: email,
       password: password
-    };
+    };    
 
     try {
-      const response = await fetch(`http://localhost:3001/auth/login`, {
+      const response = await fetch(`${BASE_URL}auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -37,16 +42,15 @@ function SignInForm() {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Login successful", responseData);
-        toastr.success('Login Successful'); // Display success message
+        toastr.success('Login Successful');
+        navigate('/dashboard');
       } else {
         console.error("Login failed", response.statusText);
-        toastr.error('Login Failed'); // Display error message
+        toastr.error('Login Failed');
       }
     } catch (error) {
       console.error("Error occurred while logging in", error);
     }
-
-    // Reset form fields
     for (const key in state) {
       setState({
         ...state,

@@ -1,6 +1,7 @@
 import React from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import BASE_URL from "../configuration";
 
 function SignUpForm() {
   const [state, setState] = React.useState({
@@ -27,7 +28,7 @@ function SignUpForm() {
       password: password
     }
     try {
-      const response = await fetch(`http://localhost:3001/auth/signup`, {
+      const response = await fetch(`${BASE_URL}auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -38,7 +39,7 @@ function SignUpForm() {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Signup successful", responseData);
-        toastr.success('Signup Successful'); // Display success message
+        toastr.success('Signup Successful');
       } else {
         console.error("Signup failed", response.statusText);
       }
@@ -46,7 +47,6 @@ function SignUpForm() {
       console.error("Error occurred while signing up", error);
     }
 
-    // Reset form fields
     for (const key in state) {
       setState({
         ...state,
