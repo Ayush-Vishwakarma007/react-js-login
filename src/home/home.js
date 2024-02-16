@@ -10,9 +10,7 @@ function Home(){
       return;
     }
   };
-  const containerClass =
-    "container" + (type === "signUp" ? "right-panel-active" : "");
-
+  const containerClass = "container " + (type === "signUp" ? "right-panel-active" : "");
   return(
     <div className="App">
         <h2>Sign in/up Form</h2>
