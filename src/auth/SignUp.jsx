@@ -2,12 +2,18 @@ import React from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import BASE_URL from "../configuration";
+import { useNavigate } from 'react-router-dom';
+
+
 
 function SignUpForm() {
+  const navigate = useNavigate(); 
+
   const [state, setState] = React.useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    role: ""
   });
 
   const handleChange = evt => {
@@ -21,12 +27,13 @@ function SignUpForm() {
   const handleOnSubmit = async evt => {
     evt.preventDefault();
 
-    const { name, email, password } = state;
+    const { name, email, password, role } = state;
     const data = {
       name: name,
       email: email,
-      password: password
-    }
+      password: password,
+      role: role
+    };
     try {
       const response = await fetch(`${BASE_URL}auth/signup`, {
         method: "POST",
@@ -38,9 +45,9 @@ function SignUpForm() {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("Signup successful", responseData);
         toastr.success('Signup Successful');
       } else {
+        toastr.error('Something went wrong please try again later');
         console.error("Signup failed", response.statusText);
       }
     } catch (error) {
@@ -82,9 +89,10 @@ function SignUpForm() {
           placeholder="Password" required
         />
         <h5>Select type of user:</h5>
-        <select>
-          <option>Volunteer</option>
-          <option>Company</option>
+        <select name="role" value={state.role} onChange={handleChange}>
+          <option value="">Select type of user:</option>
+          <option value="VOLUNTEER">Volunteer</option>
+          <option value="COMPANY">Company</option>
         </select>
         <br></br>
         <button type="submit">Sign Up</button>

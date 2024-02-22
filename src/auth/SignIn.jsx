@@ -11,7 +11,9 @@ function SignInForm() {
     email: "",
     password: ""
   });
-
+  toastr.options = {
+    "closeButton": true
+  }
   const navigate = useNavigate(); 
 
   const handleChange = evt => {
@@ -38,12 +40,24 @@ function SignInForm() {
         },
         body: JSON.stringify(data)
       });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Login successful", responseData);
+      let responseData
+      if(response.ok){
+        const contentType = response.headers.get('content-type');
+        if(contentType && contentType.includes('application/json')){
+           responseData = await response.json();
+        }else{
+           responseData = await response.text();        } 
+      }
+      console.log("Response__: ", responseData)
+      if (responseData['status']['code'] === 200) {
+        localStorage.setItem('userDetail', JSON.stringify(responseData['data']['user']))
+        localStorage.setItem('token', JSON.stringify(responseData['data']['token']))
         toastr.success('Login Successful');
-        navigate('/dashboard');
+        if(responseData['data']['user']['role'] === 'COMPANY'){
+          navigate('/home');
+        }else {
+          navigate('')
+        }
       } else {
         console.error("Login failed", response.statusText);
         toastr.error('Login Failed');

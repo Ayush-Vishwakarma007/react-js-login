@@ -1,4 +1,4 @@
-/* .App {
+.App {
     font-family: sans-serif;
     text-align: center;
   }
@@ -9,7 +9,7 @@
     box-sizing: border-box;
   }
   
-  body {
+  /* body {
     background: #f6f5f7;
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
     font-family: "Montserrat", sans-serif;
     height: 100vh;
     margin: -20px 0 50px;
-  }
+  } */
 
   h1 {
     font-weight: bold;
@@ -48,30 +48,30 @@
     margin: 15px 0;
   }
   
-  button {
+  .btn {
     border-radius: 20px;
-    border: 1px solid #2ba7ff;
-    background-color: #2cbaee;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
+    border: 1px solid #2ba7ff !important;
+    background-color: #2cbaee !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    padding: 12px 45px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    transition: transform 80ms ease-in !important;
   }
   
-  button:active {
-    transform: scale(0.95);
+  .btn:active {
+    transform: scale(0.95) !important;
   }
   
-  button:focus {
-    outline: none;
+  .btn:focus {
+    outline: none !important;
   }
   
-  button.ghost {
-    background-color: transparent;
-    border-color: #ffffff;
+  .btn.ghost {
+    background-color: transparent !important;
+    border-color: #ffffff !important;
   }
   
   form {
@@ -97,7 +97,11 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
+    position: absolute; /* Position the container absolutely */
+    top: 50% !important; /* Move the top of the container to the middle of the screen */
+    top: 50% !important; /* Move the top of the container to the middle of the screen */
+    left: 50% !important; /* Move the left of the container to the middle of the screen */
+    transform: translate(-50%, -50%) !important; /* Center the container precisely */
     overflow: hidden;
     width: 768px;
     max-width: 100%;
@@ -117,7 +121,7 @@
     z-index: 2;
   }
   
-  .container.right-panel-active .sign-in-container {
+  .container-box.right-panel-active .sign-in-container {
     transform: translateX(100%);
   }
   
@@ -128,7 +132,7 @@
     z-index: 1;
   }
   
-  .container.right-panel-active .sign-up-container {
+  .container-box.right-panel-active .sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -160,7 +164,7 @@
     z-index: 100;
   }
   
-  .container.right-panel-active .overlay-container {
+  .container-box.right-panel-active .overlay-container {
     transform: translateX(-100%);
   }
   
@@ -180,7 +184,7 @@
     transition: transform 0.6s ease-in-out;
   }
   
-  .container.right-panel-active .overlay {
+  .container-box.right-panel-active .overlay {
     transform: translateX(50%);
   }
   
@@ -203,7 +207,7 @@
     transform: translateX(-20%);
   }
   
-  .container.right-panel-active .overlay-left {
+  .container-box.right-panel-active .overlay-left {
     transform: translateX(0);
   }
   
@@ -212,7 +216,7 @@
     transform: translateX(0);
   }
   
-  .container.right-panel-active .overlay-right {
+  .container-box.right-panel-active .overlay-right {
     transform: translateX(20%);
   }
   
@@ -236,7 +240,7 @@
     color: #fff;
     font-size: 14px;
     bottom: 0;
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     right: 0;
     text-align: center;
@@ -255,4 +259,4 @@
     color: #3c97bf;
     text-decoration: none;
   }
-   */
+  

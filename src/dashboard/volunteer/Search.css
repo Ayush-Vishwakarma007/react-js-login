@@ -1,0 +1,63 @@
+.events-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .filters label {
+    margin-right: 10px;
+  }
+  
+  .filters select {
+    padding: 5px;
+  }
+  
+  .events-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .event-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .event-title {
+    margin-top: 0;
+  }
+  
+  .event-info {
+    margin-bottom: 5px;
+  }
+  
+  .event-description {
+    margin-bottom: 10px;
+  }
+  
+  .apply-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .apply-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .go-button {
+    background-color: #007bff;
+    cursor: pointer;
+    color: #fff;
+  }

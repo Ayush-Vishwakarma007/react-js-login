@@ -1,0 +1,47 @@
+.home-page {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slide {
+    position: relative;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .text-content {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    color: rgb(255, 255, 255);
+  }
+  
+  .text-content h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .text-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .text-content button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .text-content button:hover {
+    background-color: #0056b3;
+  }
+  

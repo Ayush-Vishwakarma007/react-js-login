@@ -1,0 +1,91 @@
+/* Profile.css */
+
+.profile-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-content button {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+  }
+  
+  .dropdown-content button:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #0056b3;
+  }
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-input,
+  .profile-textarea,
+  .profile-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .profile-button {
+    padding: 10px 20px;
+    background-color: #acc9e9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .profile-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .profile-skills {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .profile-skills label {
+    margin-right: 20px;
+  }

@@ -1,0 +1,46 @@
+.about-us {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 50px;
+  }
+  
+  .about-us .content {
+    flex: 1;
+    margin-right: 50px;
+  }
+  
+  .about-us .content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .about-us .content h3 {
+    font-size: 24px;
+    margin-top: 30px;
+  }
+  
+  .about-us .content p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .about-us .content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .about-us .content ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .about-us .image {
+    flex: 1;
+  }
+  
+  .about-us .image img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
