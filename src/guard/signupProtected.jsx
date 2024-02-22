@@ -8,7 +8,7 @@ function SignInProtected(props){
     useEffect(() => {
         let login = localStorage.getItem('token')   
         if(login){
-            navigate('/home')
+            navigate('/')
         }
     })
 

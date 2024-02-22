@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Search.css'; // Import the CSS file for styling
 
-function Search() {
+function VolSearch() {
   // Sample data for events
   const [events, setEvents] = useState([
     {
@@ -147,4 +147,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default VolSearch;

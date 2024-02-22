@@ -10,34 +10,34 @@ function Navigation() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div><img src={user_icon} alt="" width={30} /></div>
         <div className="container">
-          <NavLink className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/com-home">
             Local Volunteering Hub
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/">
+                <NavLink className="nav-link" to="/com-home">
                   Home
                   <span className="sr-only"></span>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/search">
+                <NavLink className="nav-link" to="/com-search">
                   Search
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/project">
+                <NavLink className="nav-link" to="/com-project">
                   Projects
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/aboutus">
+                <NavLink className="nav-link" to="/com-aboutus">
                   About Us
                 </NavLink>
               </li>
                 <div>
-                <NavLink className="nav-link" to="/profile">
+                <NavLink className="nav-link" to="/com-profile">
                     <CgProfile size="30px" color="white"/>
                 </NavLink>
                 </div>

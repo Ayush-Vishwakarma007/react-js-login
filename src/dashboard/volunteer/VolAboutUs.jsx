@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutUs.css'; // Import the CSS file for styling
 
-function AboutUs() {
+function VolAboutUs() {
   return (
     <div className="about-us">
       <div className="content">
@@ -33,4 +33,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default VolAboutUs;

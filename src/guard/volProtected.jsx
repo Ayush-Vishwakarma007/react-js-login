@@ -1,18 +1,19 @@
 import { useEffect  } from "react";
 import { useNavigate } from "react-router-dom";
-import Navigation from "../dashboard/company/Navigation";
-import Footer from "../dashboard/company/Footer";
+import Navigation from "../dashboard/volunteer/VolNavigation";
+import Footer from "../dashboard/volunteer/VolFooter";
 import "../index.css";
 
-function Protected(props){
+function VolProtected(props){
     const { Component } = props
     const navigate = useNavigate();
     
     useEffect(() => {
         let login = localStorage.getItem('token')   
         let user = JSON.parse(localStorage.getItem('userDetail'))
-        if((!login) || (login && user['role'] === 'VOLUNTEER')){
-            console.log("this is tru")
+        if((!login) || (login && user['role'] === 'COMPANY')){
+            console.log("this is volunteer")
+            console.log(props)
             navigate('/signup')
         }
     })
@@ -25,4 +26,4 @@ function Protected(props){
         </div>         
     )
 }
-export default Protected
+export default VolProtected

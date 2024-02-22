@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './Profile.css'; // Import the CSS file for styling
+import { useNavigate } from 'react-router-dom';
+
 
 function Profile() {
+  const navigate = useNavigate()
+
   const [showProfileForm, setShowProfileForm] = useState(false);
   const [profileData, setProfileData] = useState({
     firstName: 'John',
@@ -22,6 +26,12 @@ function Profile() {
   const toggleProfileForm = () => {
     setShowProfileForm(!showProfileForm);
   };
+
+  const handleLogOut = () => {
+    localStorage.removeItem('userDetail')
+    localStorage.removeItem('token')
+    navigate('/signup')
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -51,7 +61,7 @@ function Profile() {
         <button className="dropbtn">Options</button>
         <div className="dropdown-content">
           <button onClick={toggleProfileForm}>Edit Profile</button>
-          <button>Log Out</button>
+          <button onClick={handleLogOut}>Log Out</button>
         </div>
       </div>
       {showProfileForm && (

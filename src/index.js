@@ -16,14 +16,15 @@ import  Profile  from "./dashboard/company/Profile";
 import  AboutUs  from "./dashboard/company/AboutUs";
 import  Contact  from "./dashboard/company/Contact";
 
-import  Vol_Home  from "./dashboard/company/Home";
-import  Vol_Search  from "./dashboard/company/Search";
-import  Vol_Project  from "./dashboard/company/Project";
-import  Vol_Profile  from "./dashboard/company/Profile";
-import  Vol_AboutUs  from "./dashboard/company/AboutUs";
-import  Vol_Contact  from "./dashboard/company/Contact";
+import  Vol_Home  from "./dashboard/volunteer/VolHome";
+import  Vol_Search  from "./dashboard/volunteer/Search";
+import  Vol_Project  from "./dashboard/volunteer/VolProject";
+import  Vol_Profile  from "./dashboard/volunteer/VolProfile";
+import  Vol_AboutUs  from "./dashboard/volunteer/VolAboutUs";
+import  Vol_Contact  from "./dashboard/volunteer/VolContact";
 import Protected from './guard/protected';
 import SignInProtected from './guard/signupProtected'
+import VolProtected from './guard/volProtected'
 import HomeMain from './home/home'
 const container = document.getElementById('root');
 const root = createRoot(container);     
@@ -33,20 +34,20 @@ root.render(
      <Routes>
       <Route path="/signup" element={<SignInProtected Component={HomeMain} />} />
       <Route path='/' element={< Protected Component={Home}/>}/>
-      <Route path="/home" element={< Protected Component={Home}/>} />
-      <Route path="/search" element={< Protected Component={Search}/>} />
-      <Route path="/aboutus" element={< Protected Component={AboutUs}/>} />
-      <Route path="/project" element={< Protected Component={Project}/>} />
-      <Route path="/contact" element={< Protected Component={Contact}/>} />
-      <Route path="/profile" element={< Protected Component={Profile}/>} />
+      <Route path="/com-home" element={< Protected Component={Home}/>} />
+      <Route path="/com-search" element={< Protected Component={Search}/>} />
+      <Route path="/com-aboutus" element={< Protected Component={AboutUs}/>} />
+      <Route path="/com-project" element={< Protected Component={Project}/>} />
+      <Route path="/com-contact" element={< Protected Component={Contact}/>} />
+      <Route path="/com-profile" element={< Protected Component={Profile}/>} />
 
-      <Route path='/' element={< Protected Component={Vol_Home}/>}/>
-      <Route path="/vol-home" element={< Protected Component={Vol_Home}/>} />
-      <Route path="/vol-search" element={< Protected Component={Vol_Search}/>} />
-      <Route path="/col-aboutus" element={< Protected Component={Vol_AboutUs}/>} />
-      <Route path="/vol-project" element={< Protected Component={Vol_Project}/>} />
-      <Route path="/vol-contact" element={< Protected Component={Vol_Contact}/>} />
-      <Route path="/vol-profile" element={< Protected Component={Vol_Profile}/>} />
+      <Route path='/' element={< VolProtected Component={Vol_Home}/>}/>
+      <Route path="/vol-home" element={< VolProtected Component={Vol_Home}/>} />
+      <Route path="/vol-search" element={< VolProtected Component={Vol_Search}/>} />
+      <Route path="/vol-aboutus" element={< VolProtected Component={Vol_AboutUs}/>} />
+      <Route path="/vol-project" element={< VolProtected Component={Vol_Project}/>} />
+      <Route path="/vol-contact" element={< VolProtected Component={Vol_Contact}/>} />
+      <Route path="/vol-profile" element={< VolProtected Component={Vol_Profile}/>} />
     </Routes>
   </Router>,
 

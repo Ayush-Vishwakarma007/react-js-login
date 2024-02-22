@@ -54,9 +54,9 @@ function SignInForm() {
         localStorage.setItem('token', JSON.stringify(responseData['data']['token']))
         toastr.success('Login Successful');
         if(responseData['data']['user']['role'] === 'COMPANY'){
-          navigate('/home');
+          navigate('/com-home');
         }else {
-          navigate('')
+          navigate('/vol-home')
         }
       } else {
         console.error("Login failed", response.statusText);
