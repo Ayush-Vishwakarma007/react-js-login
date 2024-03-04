@@ -1,47 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import BASE_URL from '../../configuration';
+import toastr from "toastr";
 import './Search.css'; // Import the CSS file for styling
 
 function VolSearch() {
-  // Sample data for events
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: 'Tech Conference 2024',
-      companyName: 'TechCorp',
-      organizerName: 'John Smith',
-      location: 'Convention Center',
-      date: '2024-03-20',
-      time: '10:00 AM - 4:00 PM',
-      contactNumber: '123-456-7890',
-      email: 'john@example.com',
-      description: 'Join us for the biggest tech conference of the year!',
-    },
-    {
-      id: 2,
-      title: 'Startup Workshop',
-      companyName: 'StartupHub',
-      organizerName: 'Jane Doe',
-      location: 'StartupHub Office',
-      date: '2024-04-05',
-      time: '2:00 PM - 5:00 PM',
-      contactNumber: '987-654-3210',
-      email: 'jane@example.com',
-      description: 'Learn the essentials of starting your own business!',
-    },
-    {
-      id: 3,
-      title: 'Networking Mixer',
-      companyName: 'Networking Inc.',
-      organizerName: 'Alex Johnson',
-      location: 'City Lounge',
-      date: '2024-04-15',
-      time: '6:00 PM - 9:00 PM',
-      contactNumber: '555-555-5555',
-      email: 'alex@example.com',
-      description: 'Connect with professionals and expand your network!',
-    },
-  ]);
-
+  const [events, setEvents] = useState([]);
   const [filters, setFilters] = useState({
     location: 'All',
     date: 'All',
@@ -63,11 +26,59 @@ function VolSearch() {
     console.log('Go button clicked');
   };
 
-  const handleApply = (eventId) => {
-    // Handle apply logic for the event
-    console.log(`Applied to event with ID: ${eventId}`);
+  const handleApply = async (eventId) => {
+    try {
+      const userId = JSON.parse(localStorage.getItem('userDetail')).id
+      const data = {
+        userId: JSON.stringify(userId)
+      }
+      const str_eventId = JSON.stringify(eventId)
+      const response = await fetch(`${BASE_URL}event/${str_eventId}/appliedBy`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      const responseData = await response.json();
+      if (responseData['status']['code'] === 200) {
+        toastr.success(responseData['status']['description']);
+      } else {
+        toastr.error(responseData['status']['description']);
+      }
+      const new_event_id = {
+        id:userId
+      }
+      const response_event_id = await fetch(`${BASE_URL}auth/users/${eventId}`,{
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(new_event_id)
+      })
+      const new_respnse = await response_event_id.json();
+      
+    }catch (error){
+      console.error("Something went wrong", error);
+    }
   };
 
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const response = await fetch(`${BASE_URL}event/getAll`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch events');
+        }
+        const data = await response.json();
+        setEvents(data['data']);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    }
+
+    fetchEvents();
+  }, []);
   return (
     <div className="events-container">
       <h2>Events</h2>
@@ -76,39 +87,39 @@ function VolSearch() {
           Location:
           <select name="location" value={filters.location} onChange={handleFilterChange}>
             <option value="All">All</option>
-            <option value="Convention Center">Convention Center</option>
-            <option value="StartupHub Office">StartupHub Office</option>
-            <option value="City Lounge">City Lounge</option>
+            {events.map(event => (
+              <option key={event.id} value={event.event_location}>{event.event_location}</option>
+            ))}
           </select>
         </label>
         <label>
           Date:
           <select name="date" value={filters.date} onChange={handleFilterChange}>
             <option value="All">All</option>
-            <option value="2024-03-20">2024-03-20</option>
-            <option value="2024-04-05">2024-04-05</option>
-            <option value="2024-04-15">2024-04-15</option>
+            {events.map(event => (
+              <option key={event.id} value={event.event_date}>{event.event_date}</option>
+            ))}
           </select>
         </label>
         <label>
           Company Name:
           <select name="companyName" value={filters.companyName} onChange={handleFilterChange}>
             <option value="All">All</option>
-            <option value="TechCorp">TechCorp</option>
-            <option value="StartupHub">StartupHub</option>
-            <option value="Networking Inc.">Networking Inc.</option>
+            {events.map(event => (
+              <option key={event.id} value={event.company_name}>{event.company_name}</option>
+            ))}
           </select>
         </label>
         <label>
           Time:
           <select name="time" value={filters.time} onChange={handleFilterChange}>
             <option value="All">All</option>
-            <option value="10:00 AM - 4:00 PM">10:00 AM - 4:00 PM</option>
-            <option value="2:00 PM - 5:00 PM">2:00 PM - 5:00 PM</option>
-            <option value="6:00 PM - 9:00 PM">6:00 PM - 9:00 PM</option>
+            {events.map(event => (
+              <option key={event.id} value={event.event_time}>{event.event_time}</option>
+            ))}
           </select>
         </label>
-        <label>
+        <label style={{ display: 'flex', alignItems: 'center' }}>
           Search:
           <input
             type="text"
@@ -118,24 +129,25 @@ function VolSearch() {
           />
           <button onClick={handleGoClick} className="go-button">Go</button>
         </label>
+
       </div>
       <ul className="events-list">
         {events
-          .filter(event => (filters.location === 'All' || event.location === filters.location)
-            && (filters.date === 'All' || event.date === filters.date)
-            && (filters.companyName === 'All' || event.companyName === filters.companyName)
+          .filter(event => (filters.location === 'All' || event.event_location === filters.location)
+            && (filters.date === 'All' || event.event_date === filters.date)
+            && (filters.companyName === 'All' || event.company_name === filters.companyName)
             && (filters.time === 'All' || event.time === filters.time)
-            && (filters.searchTerm === '' || event.title.toLowerCase().includes(filters.searchTerm.toLowerCase())))
+            && (filters.searchTerm === '' || event.project_name.toLowerCase().includes(filters.searchTerm)))
           .map(event => (
             <li key={event.id} className="event-item">
               <div className="event-details">
-                <h3 className="event-title">{event.title}</h3>
-                <p className="event-info">Company: {event.companyName}</p>
-                <p className="event-info">Organizer: {event.organizerName}</p>
-                <p className="event-info">Location: {event.location}</p>
-                <p className="event-info">Date: {event.date}</p>
-                <p className="event-info">Time: {event.time}</p>
-                <p className="event-info">Contact Number: {event.contactNumber}</p>
+                <h3 className="event-title">{event.project_name}</h3>
+                <p className="event-info">Company: {event.company_name}</p>
+                <p className="event-info">Organizer: {event.organiser_name}</p>
+                <p className="event-info">Location: {event.event_location}</p>
+                <p className="event-info">Date: {event.event_date}</p>
+                <p className="event-info">Time: {event.event_time}</p>
+                <p className="event-info">Contact Number: {event.phone}</p>
                 <p className="event-info">Email: {event.email}</p>
                 <p className="event-description">{event.description}</p>
                 <button onClick={() => handleApply(event.id)} className="apply-button">Apply</button>

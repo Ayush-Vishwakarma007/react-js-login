@@ -15,6 +15,7 @@ import  Project  from "./dashboard/company/Project";
 import  Profile  from "./dashboard/company/Profile";
 import  AboutUs  from "./dashboard/company/AboutUs";
 import  Contact  from "./dashboard/company/Contact";
+import EventForm from "./dashboard/company/post_job";
 
 import  Vol_Home  from "./dashboard/volunteer/VolHome";
 import  Vol_Search  from "./dashboard/volunteer/Search";
@@ -22,10 +23,13 @@ import  Vol_Project  from "./dashboard/volunteer/VolProject";
 import  Vol_Profile  from "./dashboard/volunteer/VolProfile";
 import  Vol_AboutUs  from "./dashboard/volunteer/VolAboutUs";
 import  Vol_Contact  from "./dashboard/volunteer/VolContact";
+import MyApplications from "./dashboard/volunteer/myApplications";
 import Protected from './guard/protected';
 import SignInProtected from './guard/signupProtected'
 import VolProtected from './guard/volProtected'
 import HomeMain from './home/home'
+import MyPostedEvents from "./dashboard/company/myPostedEvents";
+import MyOffers from "./dashboard/volunteer/myOffer";
 const container = document.getElementById('root');
 const root = createRoot(container);     
 
@@ -40,6 +44,8 @@ root.render(
       <Route path="/com-project" element={< Protected Component={Project}/>} />
       <Route path="/com-contact" element={< Protected Component={Contact}/>} />
       <Route path="/com-profile" element={< Protected Component={Profile}/>} />
+      <Route path="/post-event" element={< Protected Component={EventForm}/>} />
+      <Route path="/my-posted-events" element={< Protected Component={MyPostedEvents}/>}/>
 
       <Route path='/' element={< VolProtected Component={Vol_Home}/>}/>
       <Route path="/vol-home" element={< VolProtected Component={Vol_Home}/>} />
@@ -48,6 +54,8 @@ root.render(
       <Route path="/vol-project" element={< VolProtected Component={Vol_Project}/>} />
       <Route path="/vol-contact" element={< VolProtected Component={Vol_Contact}/>} />
       <Route path="/vol-profile" element={< VolProtected Component={Vol_Profile}/>} />
+      <Route path="/myapplications" element={< VolProtected Component={MyApplications}/>} />
+      <Route path="/my-offers" element={< VolProtected Component={MyOffers}/>} />
     </Routes>
   </Router>,
 

@@ -46,13 +46,14 @@
     margin-bottom: 10px;
   }
   
-  .apply-button {
+  .status {
     padding: 5px 10px;
-    background-color: #007bff;
+    background-color: #3f9cff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0;
   }
   
   .apply-button:hover {
@@ -63,6 +64,17 @@
     background-color: #007bff;
     cursor: pointer;
     color: #fff;
-    margin-top: 0;
+    margin-top: 8px;
+    margin-left: 10px;
     margin-bottom: 10px;
   }
+
+ .status-container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+ }
+
+.status-container h5 {
+    margin-right: 10px; /* Adjust as needed */
+ }

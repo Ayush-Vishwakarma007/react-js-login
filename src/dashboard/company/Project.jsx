@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PaymentPopup from './payment_popup';
 import './Project.css'; // Import the CSS file for styling
 
 function Project() {
@@ -16,13 +17,17 @@ function Project() {
 
   // State to manage active tab
   const [activeTab, setActiveTab] = useState('approved');
+  const [showPaymentPopup, setShowPaymentPopup] = useState(false); // State to control payment popup visibility
+
+  const handlePaymentClick = () => {
+    setShowPaymentPopup(true); // Show payment popup when payment button is clicked
+    console.log("payment button clicked ", showPaymentPopup)
+  };
 
   return (
     <div className="project-panel">
       <div className="tabs">
-        <button className={activeTab === 'approved' ? 'active' : ''} onClick={() => setActiveTab('approved')}>Approved</button>
-        <button className={activeTab === 'under_review' ? 'active' : ''} onClick={() => setActiveTab('under_review')}>Under Review</button>
-        <button className={activeTab === 'draft' ? 'active' : ''} onClick={() => setActiveTab('draft')}>Draft</button>
+        {/* Your tab buttons... */}
       </div>
       <div className="projects">
         {projects
@@ -38,12 +43,15 @@ function Project() {
               <div className="progress-bar-container">
                 <div className="progress-bar" style={{ width: `${project.progress}%` }}></div>
               </div>
+              {/* Render payment button */}
               {activeTab === 'approved' && project.progress === 100 && (
-                <button className="payment-button">Payment</button>
+                <button className="payment-button" onClick={handlePaymentClick}>Payment</button>
               )}
             </div>
           ))}
       </div>
+      {/* Render PaymentPopup component if showPaymentPopup is true */}
+      {showPaymentPopup && <PaymentPopup onClose={() => setShowPaymentPopup(false)} />}
     </div>
   );
 }

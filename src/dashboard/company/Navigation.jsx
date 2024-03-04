@@ -23,17 +23,22 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/com-search">
-                  Search
+                  Volunteers
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/com-project">
-                  Projects
+                <NavLink className="nav-link" to="/my-posted-events">
+                  My Posted Events
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/com-aboutus">
                   About Us
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/post-event">
+                  Post Job/event
                 </NavLink>
               </li>
                 <div>

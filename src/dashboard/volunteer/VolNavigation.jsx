@@ -26,8 +26,13 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/vol-project">
-                  Projects
+                <NavLink className="nav-link" to="/myapplications">
+                  My Applications
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/my-offers">
+                  My Offers
                 </NavLink>
               </li>
               <li className="nav-item">

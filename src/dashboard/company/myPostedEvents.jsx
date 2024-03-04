@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import BASE_URL from '../../configuration';
-import './Search.css';
+import './myPostedEvents.css';
 import toastr from 'toastr';
 
-const Search = () => {
+const MyPostedEvents = () => {
   const [volunteers, setVolunteers] = useState([]);
 
   const [filters, setFilters] = useState({
@@ -17,7 +17,7 @@ const Search = () => {
     try {
       const userId = JSON.parse(localStorage.getItem('userDetail')).id
       const data = {
-        id: JSON.stringify(userId)
+        id: userId
       }
       const response = await fetch(`${BASE_URL}auth/appointedBy/${volunteerId}`,{
         method: "PUT",
@@ -58,24 +58,23 @@ const Search = () => {
   useEffect(() => {
     async function fetchVolunteers() {
       try {
-        // Fetch data from the API
-        const response = await fetch(`${BASE_URL}auth/getAllVolunteers`);
+        const userId = JSON.parse(localStorage.getItem('userDetail')).id
+        const response = await fetch(`${BASE_URL}event/${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch volunteers');
         }
         const data = await response.json();
+        console.log("Response__: ", data)
         setVolunteers(data['data']);
       } catch (error) {
         console.error('Error fetching volunteers:', error);
       }
     }
 
-    // Call the fetchVolunteers function when the component mounts
     fetchVolunteers();
   }, []);
 
   const handleGoButtonClick = () => {
-    // Handle go button click
   };
 
   const getUniqueSkills = () => {
@@ -90,7 +89,7 @@ const Search = () => {
   return (
     
     <div className="volunteer-list-container">
-      <div className="filters">
+      {/* <div className="filters">
         <div className="filter">
           <label htmlFor="skill">Skills:</label>
           <select id="skill" name="skill" value={filters.skill} onChange={handleFilterChange}>
@@ -119,7 +118,7 @@ const Search = () => {
         <div className="go-button">
           <button onClick={handleGoButtonClick}>Go</button>
         </div>
-      </div>
+      </div> */}
       <div className="volunteers">
         <h2>Volunteers</h2>
         {filteredVolunteers.length === 0 ? (
@@ -129,12 +128,17 @@ const Search = () => {
             {filteredVolunteers.map((volunteer) => (
               <li key={volunteer.id}>
                 <div className="volunteer-details">
-                  <h3>{volunteer.name}</h3>
-                  <p>Skills: {volunteer.skills.join(', ')}</p>
-                  <p>Contact Number: {volunteer.contactNumber}</p>
-                  <p>Email: {volunteer.email}</p>
-                  <p>Location: {volunteer.location}</p>
-                  <button onClick={() => handleApply(volunteer.id)} className="appoint-button">Appoint</button>
+                <h3 className="event-title">{volunteer.project_name}</h3>
+                <p className="event-info">Company: {volunteer.company_name}</p>
+                <p className="event-info">Organizer: {volunteer.organiser_name}</p>
+                <p className="event-info">Location: {volunteer.event_location}</p>
+                <p className="event-info">Date: {volunteer.event_date}</p>
+                <p className="event-info">Time: {volunteer.event_time}</p>
+                <p className="event-info">Contact Number: {volunteer.phone}</p>
+                <p className="event-info">Email: {volunteer.email}</p>
+                <p className='event-info'>Status: Active</p>
+                <p className="event-description">{volunteer.description}</p>                
+                {/* <button onClick={() => handleApply(volunteer.id)} className="appoint-button">Appoint</button> */}
                 </div>
               </li>
             ))}
@@ -145,4 +149,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default MyPostedEvents;

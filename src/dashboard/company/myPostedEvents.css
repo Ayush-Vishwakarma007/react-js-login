@@ -1,0 +1,83 @@
+.volunteer-list-container {
+    background-color: #f4f4f4;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid #ddd;
+  }
+  
+  .filters {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter {
+    margin-right: 10px;
+    padding-top: 10px;
+  }
+  
+  .filter label {
+    font-weight: bold;
+  }
+  
+  .filter select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .search input[type="text"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  
+  .go-button button {
+    padding: 8px 20px;
+    background-color: #007bff;
+      cursor: pointer;
+      color: #fff;
+      margin-top: 10px;
+  }
+  
+  .apoint-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .go-button button:hover {
+    background-color: #0056b3;
+  }
+  
+  .volunteers {
+    margin-top: 20px;
+  }
+  
+  .volunteers h2 {
+    margin-bottom: 10px;
+  }
+  
+  .volunteers ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .volunteers li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .volunteer-details h3 {
+    margin-bottom: 5px;
+  }
+  
+  .volunteer-details p {
+    margin: 5px 0;
+  }
+  

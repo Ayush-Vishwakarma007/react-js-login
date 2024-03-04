@@ -56,7 +56,7 @@ function Profile() {
       <div className="dropdown">
         <button className="dropbtn">Options</button>
         <div className="dropdown-content">
-          <button onClick={toggleProfileForm}>Edit Profile</button>
+          {/* <button onClick={toggleProfileForm}>Edit Profile</button> */}
           <button onClick={handleLogOut}>Log Out</button>
         </div>
       </div>

@@ -48,7 +48,6 @@ function SignInForm() {
         }else{
            responseData = await response.text();        } 
       }
-      console.log("Response__: ", responseData)
       if (responseData['status']['code'] === 200) {
         localStorage.setItem('userDetail', JSON.stringify(responseData['data']['user']))
         localStorage.setItem('token', JSON.stringify(responseData['data']['token']))
