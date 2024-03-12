@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import BASE_URL from '../../configuration';
 import './myPostedEvents.css';
@@ -43,7 +44,7 @@ const MyPostedEvents = () => {
     setFilters({ ...filters, [name]: value });
   };
 
-  const filteredVolunteers = volunteers.filter((volunteer) => {
+  const filteredVolunteers = volunteers?.filter((volunteer) => {
     return (
       (filters.skill === '' || volunteer.skills.includes(filters.skill)) &&
       (filters.location === '' || volunteer.location === filters.location) &&
@@ -64,13 +65,11 @@ const MyPostedEvents = () => {
           throw new Error('Failed to fetch volunteers');
         }
         const data = await response.json();
-        console.log("Response__: ", data)
         setVolunteers(data['data']);
       } catch (error) {
         console.error('Error fetching volunteers:', error);
       }
     }
-
     fetchVolunteers();
   }, []);
 
@@ -78,12 +77,12 @@ const MyPostedEvents = () => {
   };
 
   const getUniqueSkills = () => {
-    const skills = volunteers.map((volunteer) => volunteer.skills).flat();
+    const skills = volunteers?.map((volunteer) => volunteer.skills).flat();
     return Array.from(new Set(skills));
   };
 
   const getUniqueLocations = () => {
-    return Array.from(new Set(volunteers.map((volunteer) => volunteer.location)));
+    return Array.from(new Set(volunteers?.map((volunteer) => volunteer.location)));
   };
 
   return (
@@ -120,12 +119,12 @@ const MyPostedEvents = () => {
         </div>
       </div> */}
       <div className="volunteers">
-        <h2>Volunteers</h2>
-        {filteredVolunteers.length === 0 ? (
-          <h5>No volunteers found.</h5>
+        <h2>My Hosted Evets</h2>
+        {filteredVolunteers?.length === 0 ? (
+          <h5>No Events Found.</h5>
         ) : (
           <ul>
-            {filteredVolunteers.map((volunteer) => (
+            {filteredVolunteers?.map((volunteer) => (
               <li key={volunteer.id}>
                 <div className="volunteer-details">
                 <h3 className="event-title">{volunteer.project_name}</h3>

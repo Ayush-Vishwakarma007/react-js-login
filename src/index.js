@@ -25,11 +25,13 @@ import  Vol_AboutUs  from "./dashboard/volunteer/VolAboutUs";
 import  Vol_Contact  from "./dashboard/volunteer/VolContact";
 import MyApplications from "./dashboard/volunteer/myApplications";
 import Protected from './guard/protected';
+import AdminProtected from './guard/adminProtected'
 import SignInProtected from './guard/signupProtected'
 import VolProtected from './guard/volProtected'
 import HomeMain from './home/home'
 import MyPostedEvents from "./dashboard/company/myPostedEvents";
 import MyOffers from "./dashboard/volunteer/myOffer";
+import Test from "./dashboard/admin/test";
 const container = document.getElementById('root');
 const root = createRoot(container);     
 
@@ -56,6 +58,9 @@ root.render(
       <Route path="/vol-profile" element={< VolProtected Component={Vol_Profile}/>} />
       <Route path="/myapplications" element={< VolProtected Component={MyApplications}/>} />
       <Route path="/my-offers" element={< VolProtected Component={MyOffers}/>} />
+      
+      <Route path="/" element={< Protected Component={HomeMain} />} />
+      <Route path="/dashboard" element={< AdminProtected Component={Test} />} />
     </Routes>
   </Router>,
 
