@@ -32,6 +32,7 @@ import HomeMain from './home/home'
 import MyPostedEvents from "./dashboard/company/myPostedEvents";
 import MyOffers from "./dashboard/volunteer/myOffer";
 import Test from "./dashboard/admin/test";
+import AdminPanel from "./dashboard/admin/admin-panel";
 const container = document.getElementById('root');
 const root = createRoot(container);     
 
@@ -60,7 +61,7 @@ root.render(
       <Route path="/my-offers" element={< VolProtected Component={MyOffers}/>} />
       
       <Route path="/" element={< Protected Component={HomeMain} />} />
-      <Route path="/dashboard" element={< AdminProtected Component={Test} />} />
+      <Route path="/dashboard" element={< AdminProtected Component={AdminPanel} />} />
     </Routes>
   </Router>,
 
