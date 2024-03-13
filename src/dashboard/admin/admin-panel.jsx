@@ -7,6 +7,10 @@ const AdminPanel = () => {
     { id: 1, name: 'User 1', email: 'user1@example.com', role: 'Admin', events: 10 },
     { id: 2, name: 'User 2', email: 'user2@example.com', role: 'User', events: 5 },
     { id: 3, name: 'User 3', email: 'user3@example.com', role: 'User', events: 8 },
+    { id: 4, name: 'User 4', email: 'user4@example.com', role: 'User', events: 9 },
+    { id: 5, name: 'User 5', email: 'user5@example.com', role: 'User', events: 7 },
+    { id: 6, name: 'User 6', email: 'user6@example.com', role: 'User', events: 6 },
+    { id: 7, name: 'User 7', email: 'user7@example.com', role: 'User', events: 4 },
   ];
 
   const handleEdit = (id) => {
