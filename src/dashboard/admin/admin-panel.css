@@ -33,6 +33,21 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+  .user-box-company {
+    /* border: 1px solid #ccc;  */
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex; /* Align items side by side */
+    justify-content: space-between; /* Space items evenly */
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-box-company p {
+    margin: 0;
+  }
+
   .user-box p {
     margin: 0; /* Remove default margin */
   }

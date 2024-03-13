@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import './admin-panel.css'; // Import CSS file for styling
+import { FaEdit, FaTrashAlt, FaPlus } from 'react-icons/fa'; 
 
 const AdminPanel = () => {
   const users = [
@@ -22,6 +23,10 @@ const AdminPanel = () => {
     // Handle delete logic here
     console.log('Delete user with ID:', id);
   };
+
+  const handleAdd = (id) => {
+    console.log("Add with id: ", id)
+  }
 
   const chartOptions = {
     chart: {
@@ -68,12 +73,17 @@ const AdminPanel = () => {
     xaxis: {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     },
+    colors: ["#FF1654", "#247BA0"],
   };
 
   const lineChartSeries = [
     {
-      name: 'Line Chart',
+      name: 'Volunteer',
       data: [30, 40, 35, 50, 45],
+    },
+    {
+      name: 'Company',
+      data: [25, 50, 40, 35, 20],
     },
   ];
 
@@ -107,33 +117,35 @@ const AdminPanel = () => {
           {users.map((user) => (
             <li key={user.id}>
               <div className="user-box">
-                <p><strong>Name:</strong> {user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Role:</strong> {user.role}</p>
-                <p><strong>Events:</strong> {user.events}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Name:</strong> {user.name}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Email:</strong> {user.email}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Role:</strong> {user.role}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Events:</strong> {user.events}</p>
                 <div className="button-container">
-                  <button onClick={() => handleEdit(user.id)}>Edit</button>
-                  <button onClick={() => handleDelete(user.id)}>Delete</button>
+                  <FaEdit onClick={() => handleEdit(user.id)} style={{ cursor: 'pointer', color: '#fcb438', marginRight: '15px' }} />
+                <FaTrashAlt onClick={() => handleDelete(user.id)} style={{ cursor: 'pointer', color: '#FF1654', marginRight: '15px' }} />
+                <FaPlus onClick={() => handleAdd(user.id)} style={{ cursor: 'pointer', color: '#008080' }} />
                 </div>
               </div>
             </li>
           ))}
         </ul>
         <ul>
-          {users.map((user) => (
+        {users.map((user) => (
             <li key={user.id}>
-              <div className="user-box">
-                <p><strong>Name:</strong> {user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Role:</strong> {user.role}</p>
-                <p><strong>Events:</strong> {user.events}</p>
+            <div className="user-box-company">
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Name:</strong> {user.name}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Email:</strong> {user.email}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Role:</strong> {user.role}</p>
+                <p style={{fontWeight: '600'}}><strong style={{fontWeight: 'bold'}}>Events:</strong> {user.events}</p>
                 <div className="button-container">
-                  <button onClick={() => handleEdit(user.id)}>Edit</button>
-                  <button onClick={() => handleDelete(user.id)}>Delete</button>
+                <FaEdit onClick={() => handleEdit(user.id)} style={{ cursor: 'pointer', color: '#fcb438', marginRight: '15px' }} />
+                <FaTrashAlt onClick={() => handleDelete(user.id)} style={{ cursor: 'pointer', color: '#FF1654', marginRight: '15px' }} />
+                <FaPlus onClick={() => handleAdd(user.id)} style={{ cursor: 'pointer', color: '#008080' }} />
                 </div>
-              </div>
+            </div>
             </li>
-          ))}
+        ))}
         </ul>
       </div>
     </div>
