@@ -66,7 +66,9 @@ function SignUpForm() {
 
       if (response.ok) {
         const responseData = await response.json();
-        toastr.success('Signup Successful');
+        if(responseData['status']['code'] === 200){
+          toastr.success('Signup Successful');
+        }else { toastr.error(responseData['status']['description'])}
       } else {
         toastr.error('Something went wrong please try again later');
         console.error("Signup failed", response.statusText);

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import './admin-panel.css'; // Import CSS file for styling
 import { FaEdit, FaTrashAlt, FaPlus } from 'react-icons/fa'; 
+import BASE_URL from '../../configuration';
 
 const AdminPanel = () => {
+  const [chartSeriesData, setChartSeriesData] = useState([]);
+
   const users = [
     { id: 1, name: 'User 1', email: 'user1@example.com', role: 'Admin', events: 10 },
     { id: 2, name: 'User 2', email: 'user2@example.com', role: 'User', events: 5 },
@@ -28,6 +31,34 @@ const AdminPanel = () => {
     console.log("Add with id: ", id)
   }
 
+  const currentDate = new Date();
+  const currentYear = 2023;
+  const currentMonth = currentDate.getMonth() + 1; 
+
+  const months = [];
+  for (let month = 0; month < 12; month++) {
+    const monthDate = new Date(currentYear, month, 24);
+    const monthLabel = monthDate.toLocaleString('en-US', { month: 'short' });
+    months.push(`${currentYear}-${monthLabel}`);
+  }
+
+useEffect(() => {
+  async function fetchVolunteers() {
+    try {
+      const response = await fetch(`${BASE_URL}auth/bar-chart-data`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch volunteers');
+      }
+      const data = await response.json();
+      console.log("Data__: ", data)
+      setChartSeriesData(data['data']);
+    } catch (error) {
+      console.error('Error fetching volunteers:', error);
+    }
+  }
+  fetchVolunteers();
+}, []);
+
   const chartOptions = {
     chart: {
       type: 'bar',
@@ -35,6 +66,7 @@ const AdminPanel = () => {
       toolbar: {
         show: false,
       },
+      stacked: true,
     },
     plotOptions: {
       bar: {
@@ -46,22 +78,29 @@ const AdminPanel = () => {
     dataLabels: {
       enabled: false,
     },
+    title: {
+      text: 'Active Volunteers & Company'
+    },
     xaxis: {
-      categories: users.map((user) => user.name),
+      categories: months,
     },
     yaxis: {
       title: {
-        text: 'Events',
+        text: 'No of Volunteers & Companies',
       },
     },
   };
 
-  const chartSeries = [
-    {
-      name: 'Events',
-      data: users.map((user) => user.events),
-    },
-  ];
+  // const chartSeries = [
+  //   {
+  //     name: 'Active Company',
+  //     data: [44, 55, 41]
+  //   }, 
+  //   {
+  //     name: 'Active Volunteer',
+  //     data: [53, 32, 33]
+  //   }
+  // ]
 
   const lineChartOptions = {
     chart: {
@@ -70,20 +109,27 @@ const AdminPanel = () => {
         show: false,
       },
     },
-    xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    title: {
+      text: 'Registeration of Volunteers & Company'
     },
-    colors: ["#FF1654", "#247BA0"],
+    xaxis: {
+      categories: months,
+    },
+    colors: ["#FF1654", "#247BA0", "#38c25e"],
   };
 
   const lineChartSeries = [
     {
       name: 'Volunteer',
-      data: [30, 40, 35, 50, 45],
+      data: [30, 40, 35],
     },
     {
       name: 'Company',
-      data: [25, 50, 40, 35, 20],
+      data: [25, 50, 40],
+    },
+    {
+      name: 'Events',
+      data: [20, 25, 30],
     },
   ];
 
@@ -97,7 +143,7 @@ const AdminPanel = () => {
         <div className="chart">
           <Chart
             options={chartOptions}
-            series={chartSeries}
+            series={chartSeriesData}
             type="bar"
             height={350}
           />
