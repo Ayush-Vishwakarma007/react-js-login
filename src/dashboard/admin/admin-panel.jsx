@@ -6,6 +6,7 @@ import BASE_URL from '../../configuration';
 
 const AdminPanel = () => {
   const [chartSeriesData, setChartSeriesData] = useState([]);
+  const [lineChartSeriesData, setLineChartSeriesData] = useState([])
 
   const users = [
     { id: 1, name: 'User 1', email: 'user1@example.com', role: 'Admin', events: 10 },
@@ -46,15 +47,24 @@ useEffect(() => {
   async function fetchVolunteers() {
     try {
       const response = await fetch(`${BASE_URL}auth/bar-chart-data`);
+      const lineChartResponse = await fetch(`${BASE_URL}auth/line-chart-data`)
       if (!response.ok) {
         throw new Error('Failed to fetch volunteers');
       }
+      if(!lineChartResponse.ok){
+        throw new Error('Falied to fetch Line chart data')
+      }
+      const line = await lineChartResponse.json()
       const data = await response.json();
-      console.log("Data__: ", data)
+      setLineChartSeriesData(line['data'])
       setChartSeriesData(data['data']);
     } catch (error) {
       console.error('Error fetching volunteers:', error);
     }
+  }
+
+  async function fetchLineChart(){
+
   }
   fetchVolunteers();
 }, []);
@@ -91,17 +101,6 @@ useEffect(() => {
     },
   };
 
-  // const chartSeries = [
-  //   {
-  //     name: 'Active Company',
-  //     data: [44, 55, 41]
-  //   }, 
-  //   {
-  //     name: 'Active Volunteer',
-  //     data: [53, 32, 33]
-  //   }
-  // ]
-
   const lineChartOptions = {
     chart: {
       height: 350,
@@ -118,20 +117,20 @@ useEffect(() => {
     colors: ["#FF1654", "#247BA0", "#38c25e"],
   };
 
-  const lineChartSeries = [
-    {
-      name: 'Volunteer',
-      data: [30, 40, 35],
-    },
-    {
-      name: 'Company',
-      data: [25, 50, 40],
-    },
-    {
-      name: 'Events',
-      data: [20, 25, 30],
-    },
-  ];
+  // const lineChartSeries = [
+  //   {
+  //     name: 'Volunteer',
+  //     data: [30, 40, 35],
+  //   },
+  //   {
+  //     name: 'Company',
+  //     data: [25, 50, 40],
+  //   },
+  //   {
+  //     name: 'Events',
+  //     data: [20, 25, 30],
+  //   },
+  // ];
 
   return (
     <div className="admin-panel">
@@ -152,7 +151,7 @@ useEffect(() => {
         <div className="chart">
           <Chart
             options={lineChartOptions}
-            series={lineChartSeries}
+            series={lineChartSeriesData}
             type="line"
             height={350}
           />
