@@ -88,36 +88,6 @@ const MyPostedEvents = () => {
   return (
     
     <div className="volunteer-list-container">
-      {/* <div className="filters">
-        <div className="filter">
-          <label htmlFor="skill">Skills:</label>
-          <select id="skill" name="skill" value={filters.skill} onChange={handleFilterChange}>
-            <option value="">All</option>
-            {getUniqueSkills().map((skill) => (
-              <option key={skill} value={skill}>
-                {skill}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="filter">
-          <label htmlFor="location">Location:</label>
-          <select id="location" name="location" value={filters.location} onChange={handleFilterChange}>
-            <option value="">All</option>
-            {getUniqueLocations().map((location) => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="search">
-          <input type="text" placeholder="Search by name..." name="search" value={filters.search} onChange={handleFilterChange} />
-        </div>
-        <div className="go-button">
-          <button onClick={handleGoButtonClick}>Go</button>
-        </div>
-      </div> */}
       <div className="volunteers">
         <h2>My Hosted Evets</h2>
         {filteredVolunteers?.length === 0 ? (

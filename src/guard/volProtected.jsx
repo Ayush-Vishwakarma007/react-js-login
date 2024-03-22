@@ -16,6 +16,9 @@ function VolProtected(props){
             console.log(props)
             navigate('/signup')
         }
+        if(login && user['role'] === 'ADMIN'){
+            navigate('/')
+        }
     })
 
     return(

@@ -11,17 +11,6 @@
     margin-bottom: 20px;
   }
   
-  .user-list {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .user-list ul {
-    list-style-type: none; /* Remove the bullet points */
-    padding: 0;
-  }
-  
   .user-box {
     /* border: 1px solid #ccc;  */
     border-radius: 8px;
@@ -79,10 +68,6 @@
     margin-bottom: 25px;
     justify-content: space-between;
   }
-
-  .user-list ul {
-    width: 49%;
-  }
   
   .chart {
     width: 49%;
@@ -116,4 +101,63 @@
   button:hover {
     background-color: #0056b3;
   }
+
+
+/* Existing CSS for user list */
+.user-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-item {
+  width: calc(33.33% - 20px); /* Adjust the width as needed */
+  margin-right: 20px; /* Adjust the right margin between items */
+  margin-bottom: 20px; /* Adjust the bottom margin between rows */
+}
+
+.user-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.user-info p {
+  margin: 5px 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 20px; */
+  width: 100%;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  color: #333;
+}
+
+.pagination button.active {
+  background-color: #fcb438;
+  color: #fff;
+  border-color: #fcb438;
+}
+
+
   

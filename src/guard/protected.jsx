@@ -15,6 +15,9 @@ function Protected(props){
             console.log("this is tru")
             navigate('/signup')
         }
+        if(login && user['role'] === 'ADMIN'){
+            navigate('/')
+        }
     })
 
     return(

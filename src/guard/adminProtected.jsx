@@ -11,8 +11,12 @@ function AdminProtected(props){
     useEffect(() => {
         let login = localStorage.getItem('token')   
         let user = JSON.parse(localStorage.getItem('userDetail'))
-        if((!login) || (login && user['role'] === 'ADMIN')){
-            navigate('/signup')
+        if((!login) || (login && (user['role'] === 'VOLUNTEER' || user['role'] === 'COMPANY'))){
+            if(user['role'] === 'VOLUNTEER'){
+                navigate('/vol-home')
+            }else{
+                navigate('/com-home')
+            }
         }
     })
 

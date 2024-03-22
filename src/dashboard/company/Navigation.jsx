@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import user_icon from '../../assets/icon.png';
 
-
 function Navigation() {
+  const userDetail = JSON.parse(localStorage.getItem('userDetail'));
+  const isAdmin = userDetail && userDetail.role === 'ADMIN';
+
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -18,7 +20,6 @@ function Navigation() {
               <li className="nav-item">
                 <NavLink className="nav-link" to="/com-home">
                   Home
-                  <span className="sr-only"></span>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -41,11 +42,18 @@ function Navigation() {
                   Post Job/event
                 </NavLink>
               </li>
-                <div>
+              {isAdmin && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/com-profile">
-                    <CgProfile size="30px" color="white"/>
+                  <CgProfile size="30px" color="white" />
                 </NavLink>
-                </div>
+              </li>
             </ul>
           </div>
         </div>

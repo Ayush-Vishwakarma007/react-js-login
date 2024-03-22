@@ -31,7 +31,6 @@ import VolProtected from './guard/volProtected'
 import HomeMain from './home/home'
 import MyPostedEvents from "./dashboard/company/myPostedEvents";
 import MyOffers from "./dashboard/volunteer/myOffer";
-import Test from "./dashboard/admin/test";
 import AdminPanel from "./dashboard/admin/admin-panel";
 const container = document.getElementById('root');
 const root = createRoot(container);     
@@ -40,6 +39,8 @@ root.render(
   <Router>
      <Routes>
       <Route path="/signup" element={<SignInProtected Component={HomeMain} />} />
+      <Route path="/" element={<AdminProtected Component={AdminPanel} />} />
+      <Route path="/dashboard" element={<AdminProtected Component={AdminPanel} />} />
       <Route path='/' element={< Protected Component={Home}/>}/>
       <Route path="/com-home" element={< Protected Component={Home}/>} />
       <Route path="/com-search" element={< Protected Component={Search}/>} />
@@ -49,7 +50,8 @@ root.render(
       <Route path="/com-profile" element={< Protected Component={Profile}/>} />
       <Route path="/post-event" element={< Protected Component={EventForm}/>} />
       <Route path="/my-posted-events" element={< Protected Component={MyPostedEvents}/>}/>
-
+      <Route path="/" element={<AdminProtected Component={AdminPanel} />} />
+      <Route path="/dashboard" element={<AdminProtected Component={AdminPanel} />} />
       <Route path='/' element={< VolProtected Component={Vol_Home}/>}/>
       <Route path="/vol-home" element={< VolProtected Component={Vol_Home}/>} />
       <Route path="/vol-search" element={< VolProtected Component={Vol_Search}/>} />
@@ -59,9 +61,7 @@ root.render(
       <Route path="/vol-profile" element={< VolProtected Component={Vol_Profile}/>} />
       <Route path="/myapplications" element={< VolProtected Component={MyApplications}/>} />
       <Route path="/my-offers" element={< VolProtected Component={MyOffers}/>} />
-      
-      <Route path="/" element={< Protected Component={HomeMain} />} />
-      <Route path="/dashboard" element={< AdminProtected Component={AdminPanel} />} />
+      {/* <Route path="/edit-user" element={< AdminProtected Component={EditUser} />} /> */}
     </Routes>
   </Router>,
 
